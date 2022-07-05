@@ -1,4 +1,4 @@
-PSET2
+PSET2 - House Price Prediction
 ==============================
 
 MLOps project for PSET2-House Price Prediction
