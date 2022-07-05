@@ -37,6 +37,7 @@ Step 6:
 Dagshub has been used to maintain one repository that will easily facilitate the MLOps pipeline. It has instances of DVC, MLFlow and Github.
 All the changes pushed to github will be visible to in Dagshub as well. One can create an account in Dagshub and the replicate the current
 github repo.
+Here is the Dagshub link: https://dagshub.com/AnweshaMohanty-07/MLOps-Project
 
 Step 7:
 For model registry and model versioning, MLFlow is used which is again linked on Dagshub. Each time an iteration is run,
