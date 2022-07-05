@@ -1,0 +1,22 @@
+raw_data_config: 
+  raw_data_csv: data/raw/housing.csv
+  model_var: ['housing_median_age','total_rooms','total_bedrooms','population','households','median_income','median_house_value']
+  train_test_split_ratio: 0.2
+  target: median_house_value 
+  random_state: 42
+  new_train_data_csv: data/raw/train_new.csv
+
+processed_data_config:
+  train_data_csv: data/processed/housing_train.csv
+  test_data_csv:  data/processed/housing_test.csv
+
+mlflow_config:
+  artifacts_dir: artifacts
+  experiment_name: model_iteration1
+  run_name: linear_regression
+  registered_model_name: linear_model
+  
+lasso_config:
+  alpha: 0.7
+
+model_dir: models/model.joblib
