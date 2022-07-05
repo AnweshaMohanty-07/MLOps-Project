@@ -1,57 +1,50 @@
 PSET2
 ==============================
 
-MLOps project for PSET2
+MLOps project for PSET2-House Price Prediction
 
-Project Organization
-------------
+This project is to predict the price of a house given various factors like no. of bedrooms, total no. of rooms, median income of that locality,
+population, number of households, age of the house. The target here is to predict the median price of houses. All the variables here are numeric and
+Lasso Regression is used to get the predictions.
 
-    ├── LICENSE
-    ├── Makefile           <- Makefile with commands like `make data` or `make train`
-    ├── README.md          <- The top-level README for developers using this project.
-    ├── data
-    │   ├── external       <- Data from third party sources.
-    │   ├── interim        <- Intermediate data that has been transformed.
-    │   ├── processed      <- The final, canonical data sets for modeling.
-    │   └── raw            <- The original, immutable data dump.
-    │
-    ├── docs               <- A default Sphinx project; see sphinx-doc.org for details
-    │
-    ├── models             <- Trained and serialized models, model predictions, or model summaries
-    │
-    ├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
-    │                         the creator's initials, and a short `-` delimited description, e.g.
-    │                         `1.0-jqp-initial-data-exploration`.
-    │
-    ├── references         <- Data dictionaries, manuals, and all other explanatory materials.
-    │
-    ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-    │   └── figures        <- Generated graphics and figures to be used in reporting
-    │
-    ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
-    │                         generated with `pip freeze > requirements.txt`
-    │
-    ├── setup.py           <- makes project pip installable (pip install -e .) so src can be imported
-    ├── src                <- Source code for use in this project.
-    │   ├── __init__.py    <- Makes src a Python module
-    │   │
-    │   ├── data           <- Scripts to download or generate data
-    │   │   └── make_dataset.py
-    │   │
-    │   ├── features       <- Scripts to turn raw data into features for modeling
-    │   │   └── build_features.py
-    │   │
-    │   ├── models         <- Scripts to train models and then use trained models to make
-    │   │   │                 predictions
-    │   │   ├── predict_model.py
-    │   │   └── train_model.py
-    │   │
-    │   └── visualization  <- Scripts to create exploratory and results oriented visualizations
-    │       └── visualize.py
-    │
-    └── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
+Aim of this project is not to optimize the ML model, rather show end-to-end MLOps process-starting from ingesting the raw data, splitting
+into train-test set, model building and model version logging. Below are the steps mentioned:
 
+Step 1:
+Create a github repo for code version controlling. Here is this project's github repo - https://github.com/AnweshaMohanty-07/MLOps-Project/tree/main/PSET2
 
---------
+Step 2:
+Create an account in AWS with EC2 instance. For this project Cloud9 is used to create the project folder. 
+Here is the AWS instance link - https://us-west-2.console.aws.amazon.com/cloud9/ide/23706761fd5540b9a2ce1d48d744a08e
+Clone the github repo in the environment so that all changes made in AWS can be pushed to github.- git clone githubrepo
 
-<p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
+Step 3:
+Use cookie cutter to create standard Data Science project folders.
+pip install cookiecutter
+cookiecutter https://github.com/drivendata/cookiecutter-data-science
+
+Step 4:
+Create the makefile and requirements.txt to install all necessary libraries and their dependencies.
+Upload the raw file to data/raw
+
+Step 5:
+To maintain data versioning, DVC is used here. It will create a metadata file of the original data which will be maintained by github 
+instead of storing the complete data.
+pip install dvc
+dvc init 
+
+Step 6:
+Dagshub has been used to maintain one repository that will easily facilitate the MLOps pipeline. It has instances of DVC, MLFlow and Github.
+All the changes pushed to github will be visible to in Dagshub as well. One can create an account in Dagshub and the replicate the current
+github repo.
+
+Step 7:
+For model registry and model versioning, MLFlow is used which is again linked on Dagshub. Each time an iteration is run,
+models along with the parameters are logged which can be easily reproducible.
+
+Step 8:
+All python codes are maintained in src folder. A params.yaml is maintained that keeps track of all the arguments passed to functions.
+Data and its versions are maintained in data folder.
+artifacts folder has the versions of models executed.
+
+The above steps outline the CI pipeline using AWS,Github, DVC, MLFlow and Dagshub.
